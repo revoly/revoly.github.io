@@ -6,7 +6,7 @@
   <link href="http://asky.vip/atom.xml" rel="self"/>
   
   <link href="http://asky.vip/"/>
-  <updated>2021-06-16T03:01:29.338Z</updated>
+  <updated>2021-06-16T03:41:22.967Z</updated>
   <id>http://asky.vip/</id>
   
   <author>
@@ -17,13 +17,13 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Dynamo入门教程</title>
+    <title>Dynamo 入门教程（一）</title>
     <link href="http://asky.vip/2021/06/15/Dynamo/1.Dynamo%E5%AE%89%E8%A3%85/"/>
     <id>http://asky.vip/2021/06/15/Dynamo/1.Dynamo%E5%AE%89%E8%A3%85/</id>
     <published>2021-06-15T14:47:31.598Z</published>
-    <updated>2021-06-16T03:01:29.338Z</updated>
+    <updated>2021-06-16T03:41:22.967Z</updated>
     
-    <content type="html"><![CDATA[<p>Dynamo是AutodeskRevit的开源附加模块。使用Dynamo，设计师将获得传统建模界面所无法提供的数据操纵和几何控制功能。能够灵活的获取和管理建筑信息，能够构建自定义系统来控制族和参数。</p><span id="more"></span><h2 id="2-安装方法"><a href="#2-安装方法" class="headerlink" title="2.安装方法"></a>2.安装方法</h2><p>通过Dynamo网站下载相应的安装版本 <a href="http://dynamobim.org/download/">http://dynamobim.org/download/</a><br><img src="/2021/06/15/Dynamo/1.Dynamo%E5%AE%89%E8%A3%85/2021-06-15-16-02-30.jpg"><br>【SANDBOX】其中DYNAMO 为基础版本。可通过上述网站下载并安装最新版本。<br>【Civil 3D版】可通过Autodesk Desktop App下载。<br>【REVIT 版】通过安装最新版REIVT获取，REVIT2017-2018可通过历史版本下载（详见3.Dynamo历史版本）。</p><h2 id="3-Dynamo历史版本"><a href="#3-Dynamo历史版本" class="headerlink" title="3.Dynamo历史版本"></a>3.Dynamo历史版本</h2><p>Dynamo历史版本下载网址 <a href="https://dynamobuilds.com/">https://dynamobuilds.com/</a><br>【DynamoCoreRuntime xxx】为免安装版本；<br>【DynamoInstall xxx】需要安装后试用；<br>【DynamoRevit xxx】为revit版本的Dynamo</p><h2 id="4-Revit版本安装"><a href="#4-Revit版本安装" class="headerlink" title="4.Revit版本安装"></a>4.Revit版本安装</h2>]]></content>
+    <content type="html"><![CDATA[<p>Dynamo是AutodeskRevit的开源附加模块。使用Dynamo，设计师将获得传统建模界面所无法提供的数据操纵和几何控制功能。能够灵活的获取和管理建筑信息，能够构建自定义系统来控制族和参数。</p><span id="more"></span><h3 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h3><p>通过Dynamo网站下载相应的安装版本 <a href="http://dynamobim.org/download/">http://dynamobim.org/download/</a><br><img src="/2021/06/15/Dynamo/1.Dynamo%E5%AE%89%E8%A3%85/2021-06-15-16-02-30.jpg"><br>【SANDBOX】其中DYNAMO 为基础版本。可通过上述网站下载并安装最新版本。<br>【Civil 3D版】可通过Autodesk Desktop App下载。<br>【REVIT 版】通过安装最新版REIVT获取，REVIT2017-2018可通过历史版本下载（详见3.Dynamo历史版本）。</p><h3 id="历史版本下载"><a href="#历史版本下载" class="headerlink" title="历史版本下载"></a>历史版本下载</h3><p>Dynamo历史版本下载网址 <a href="https://dynamobuilds.com/">https://dynamobuilds.com/</a><br>【DynamoCoreRuntime xxx】为免安装版本；<br>【DynamoInstall xxx】需要安装后试用；<br>【DynamoRevit xxx】为revit版本的Dynamo</p><h3 id="Revit版本安装"><a href="#Revit版本安装" class="headerlink" title="Revit版本安装"></a>Revit版本安装</h3><p>选择【DynamoRevit xxx】为revit版本的Dynamo，下载并安装。<br>安装前可通过windows控制面板中的【添加删除程序】卸载以前安装的版本。若两个版本同时存在，每次打开revit项目试用Dynamo会同时出现版本选择界面。</p><p><img src="/2021/06/15/Dynamo/1.Dynamo%E5%AE%89%E8%A3%85/2021-06-16-11-29-59.jpg"></p><h3 id="Dynamo-for-revit-界面"><a href="#Dynamo-for-revit-界面" class="headerlink" title="Dynamo for revit 界面"></a>Dynamo for revit 界面</h3><p>新版本安装后操作界面</p><p><img src="/2021/06/15/Dynamo/1.Dynamo%E5%AE%89%E8%A3%85/2021-06-16-11-34-19.jpg"></p>]]></content>
     
     
     <summary type="html">&lt;p&gt;Dynamo是AutodeskRevit的开源附加模块。使用Dynamo，设计师将获得传统建模界面所无法提供的数据操纵和几何控制功能。能够灵活的获取和管理建筑信息，能够构建自定义系统来控制族和参数。&lt;/p&gt;</summary>
