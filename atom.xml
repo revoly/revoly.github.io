@@ -6,7 +6,7 @@
   <link href="http://asky.vip/atom.xml" rel="self"/>
   
   <link href="http://asky.vip/"/>
-  <updated>2021-06-19T03:47:56.200Z</updated>
+  <updated>2021-06-30T05:52:13.246Z</updated>
   <id>http://asky.vip/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>REVIT API-管道平行</title>
+    <link href="http://asky.vip/2021/06/30/REVIT%20API/%E7%AE%A1%E9%81%93%E5%B9%B3%E8%A1%8C/"/>
+    <id>http://asky.vip/2021/06/30/REVIT%20API/%E7%AE%A1%E9%81%93%E5%B9%B3%E8%A1%8C/</id>
+    <published>2021-06-29T16:00:00.000Z</published>
+    <updated>2021-06-30T05:52:13.246Z</updated>
+    
+    <content type="html"><![CDATA[<p>在revit建模过程中由于管道不平行导致后期添加标注出错，通过手工方式对齐再移动会降低建模效率。<br>可通过REVIT API 编写宏命令实现一建管道平行，提高建模效率。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 管道平行</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">public void ElementRote()</span><br><span class="line">&#123;</span><br><span class="line">Document doc =this.ActiveUIDocument.Document;</span><br><span class="line">          Autodesk.Revit.UI.Selection.Selection sel =this.ActiveUIDocument.Selection;</span><br><span class="line">          var eids =sel.GetElementIds();</span><br><span class="line">          ElementSet els=new ElementSet();</span><br><span class="line">          Line L1=null;</span><br><span class="line">          Transaction ts1 = new Transaction(doc, &quot;revit&quot;);</span><br><span class="line">      ts1.Start();</span><br><span class="line">          foreach (var eid in eids)</span><br><span class="line">          &#123;</span><br><span class="line">          var elem=doc.GetElement(eid); </span><br><span class="line">              LocationCurve lCurve = elem.Location as LocationCurve;                </span><br><span class="line">              if(L1==null)</span><br><span class="line">              &#123;</span><br><span class="line">              //设置基准管道</span><br><span class="line">              L1=lCurve.Curve as Line;</span><br><span class="line">              &#125;</span><br><span class="line">              Line L2=lCurve.Curve as Line;</span><br><span class="line">              //计算角度</span><br><span class="line">              double deg=GetDegree(L2,L1);</span><br><span class="line">              //管道旋转</span><br><span class="line">              RotateColumn(doc,elem,L2,deg);               </span><br><span class="line">          &#125;</span><br><span class="line">           ts1.Commit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 计算旋转角度</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">/// &lt;param name=&quot;L1&quot;&gt;&lt;/param&gt;</span><br><span class="line">/// &lt;param name=&quot;L2&quot;&gt;&lt;/param&gt;</span><br><span class="line">/// &lt;returns&gt;&lt;/returns&gt;</span><br><span class="line">public double GetDegree (Line L1,Line L2)</span><br><span class="line">&#123;</span><br><span class="line">XYZ first=L1.GetEndPoint(0);</span><br><span class="line">XYZ second=L1.GetEndPoint(1);</span><br><span class="line">XYZ third=L2.GetEndPoint(0);</span><br><span class="line">XYZ fourth=L2.GetEndPoint(1);</span><br><span class="line">         var A = Math.Atan2(second.Y - first.Y, second.X - first.X);</span><br><span class="line">          var B = Math.Atan2(fourth.Y - third.Y, fourth.X - third.X);</span><br><span class="line">          return (double)(B - A);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 旋转管道</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">public void RotateColumn(Autodesk.Revit.DB.Document document, Autodesk.Revit.DB.Element element,Line lcenter,double deg)</span><br><span class="line">&#123;</span><br><span class="line">  //设置旋转中心</span><br><span class="line">XYZ point1 = lcenter.GetEndPoint(0);</span><br><span class="line">  XYZ point2 = new XYZ(point1.X,point1.Y,point1.Z+30);</span><br><span class="line">  Line axis = Line.CreateBound(point1, point2);</span><br><span class="line">  //管道旋转</span><br><span class="line">  ElementTransformUtils.RotateElement(document, element.Id, axis, deg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;在revit建模过程中由于管道不平行导致后期添加标注出错，通过手工方式对齐再移动会降低建模效率。&lt;br&gt;可通过REVIT API 编写宏命令实现一建管道平行，提高建模效率。&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr</summary>
+      
+    
+    
+    
+    <category term="机电BIM" scheme="http://asky.vip/categories/%E6%9C%BA%E7%94%B5BIM/"/>
+    
+    
+    <category term="二次开发" scheme="http://asky.vip/tags/%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
   
   <entry>
     <title>各类净高规范汇总</title>
